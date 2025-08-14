@@ -95,3 +95,12 @@ jobs:
             railway up --service backend || \
             (echo "creating new service and deploying" && railway up)
 
+        - name: Run create_admin.py script
+          env:
+            MONGODB_URI: ${{ secrets.MONGODB_URI }}
+            DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+            SECRET_KEY: ${{ secrets.SECRET_KEY }}
+            FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+            FIREBASE_CREDENTIALS_BASE64: ${{ secrets.FIREBASE_CREDENTIALS_BASE64 }}
+          run: |
+            python create_admin.py
